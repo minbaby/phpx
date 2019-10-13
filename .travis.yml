@@ -9,7 +9,7 @@ os:
 #  - osx
 
 php:
-  - 7.0
+  # - 7.0
   - 7.1
   - 7.2
 
@@ -17,7 +17,8 @@ notifications:
   email: team@swoole.com
 
 before_script:
-    - pecl channel-update pecl.php.net && pecl install swoole
+    - pecl channel-update pecl.php.net && yes no | pecl install swoole
+    - echo "extension=swoole.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - cmake . && make
 
 script:
