@@ -23,5 +23,4 @@ deploy:
   file: "./bin/phpx"
   skip_cleanup: true
   on:
-    # tags: true
-    branch: feature/auto-release
+    tags: true
