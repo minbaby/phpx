@@ -17,7 +17,7 @@ notifications:
   email: team@swoole.com
 
 before_script:
-    - pecl install swoole
+    - pecl channel-update pecl.php.net && pecl install swoole
     - cmake . && make
 
 script:
