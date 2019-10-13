@@ -1,5 +1,13 @@
 {
+    "name": "swoole/phpx",
+    "type": "project",
+    "license": "Apache License 2.0",
     "require": {
-        "matyhtf/swoole_framework": "^1.20"
+        "symfony/console": "^4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "phpx\\": "src/"
+        }
     }
 }
