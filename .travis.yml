@@ -1,29 +1,26 @@
-language: php 
-
+language: php
 compiler:
-  - g++
-  - clang++
-
+- g++
+- clang++
 os:
-  - linux
-#  - osx
-
+- linux
 php:
-  # - 7.0
-  - 7.1
-  - 7.2
-
+- 7.1
+- 7.2
 notifications:
   email: team@swoole.com
-
 before_script:
-    - pecl channel-update pecl.php.net && yes no | pecl install swoole
-    - echo "extension=swoole.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - cmake . && make
-
+- pecl channel-update pecl.php.net && yes no | pecl install swoole
+- echo "extension=swoole.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+- cmake . && make
 script:
-    - ./build.sh
-    - ./bin/phpx --version
-    - exit 0
-
-
+- "./build.sh"
+- "./bin/phpx --version"
+deploy:
+  provider: releases
+  api_key:
+    secure: e+AyXSq8ZV+BhH310LKinLldq4KNDz9cZ05zPMpZn5vwVApE+f0s+n38SsNsUcC64SBfHupg/IVb0GE6ofSmdXNGoJGcztR12Y13DbFF3G08m8EzCPQ2PV+bRyHF8I4MNnLXTzfclCZfIRZaOp8bHcts5aiftOBBbfabUUPsp2nfPjJS928Gd0G7VkRvHDd6ts73RddEkip0+IoH9e+1Fqmtezp1N5D7t6Dg3Appr+XxC2l6OoCT1xgS/5s8ZcT4hcyvJZ+KU59801lLehQO+Js2yihjMQ0WcdxUIDOwY3UQtIUkux/O+gEhJrRzd5p3ZYaCE+BcVLg670NmY3qbQAT3Dde3xKcHWIOxc7PZaj+HntD7dpQPKH38+t8eNd26T7yx+JQDRlKTF7BpKzKlic3w+2YY3XE0ZkkFYdWigmwG0Bs2j9ir7E1JuOutrTE8/9ETrcFDWNQ26QdFuA5kfuey+31Y8OklQGeJwDmurJKRH+WkhOrigfZWuXcLL/hI1OFo6FS/PEnbRSFMLCjh/pAeRegOTQqwgL1DLNxA6s0NOqhpA2jfg+NRe6tXjXc8AGzE5EHMr+nrWoyE8aTLuolPfgaaVFOFRUBfPxGnQEWMS/RdJrlczr9hDY7IlNa8yHgKCLRDNS9K07jAFjq2onkve2T64iAGfVR85LzUfJY=
+  file: "./bin/phpx"
+  skip_cleanup: true
+  on:
+    tags: true
