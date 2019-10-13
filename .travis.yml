@@ -20,6 +20,8 @@ before_script:
     - cmake . && make
 
 script:
+    - ./build.sh
+    - ./bin/phpx --version
     - exit 0
 
 
